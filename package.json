@@ -6,18 +6,30 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "electron-start": "electron .",
-    "server-dev": "nodemon server.js"
+    "server-dev": "nodemon server.js",
+    "react-dev": "webpack --mode production -w"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
     "electron": "^20.0.1",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "express": "^4.18.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }

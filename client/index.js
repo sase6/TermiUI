@@ -1,33 +1,7 @@
-// document.querySelector('.current-directory').innerText = __dirname;
-//get / set dirname...
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
 
-axios.get('/dir')
-.then(res => document.querySelector('.current-directory').innerText = 'Directory: ' + res.data);
-
-const getData = () => {
-  axios({
-    method: 'get',
-    url: '/scripts'
-  })
-  .then((res) => {
-    Object.keys(res.data).forEach(scriptName => {
-      let el = document.createElement('div');
-      el.innerText = scriptName;
-      el.addEventListener('click', () => {
-        axios({
-          method: 'post',
-          url: '/run',
-          data: {
-            scriptName: scriptName
-          }
-        });
-      });
-      
-      document.querySelector('.existing-scripts-list').appendChild(el);
-    });
-  })
-  .catch(err => err);
-};
-
-
-getData();
+let container = document.getElementById('root');
+let root = createRoot(container);
+root.render(<App />);
