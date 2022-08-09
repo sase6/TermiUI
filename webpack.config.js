@@ -4,7 +4,11 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: "/client/index.js",
-  mode: "development",
+  mode: "production",
+  cache: {
+    type: 'filesystem',
+    allowCollectingMemory: true,
+  },
   module: {
     rules: [
       {
