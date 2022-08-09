@@ -25,6 +25,7 @@ body {
   display: grid;
   grid-template-rows: 50px 95px 440px;
   grid-row-gap: 15px;
+  overflow: hidden;
 }
 
 .script-adder {
@@ -41,7 +42,7 @@ body {
 .cd {
   display: grid;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 900;
   color: rgba(0,0,0,0.75);
   font-family: Lato, sans-serif !important;
@@ -99,4 +100,34 @@ body {
 .kill-port {
   display: flex;
   flex-direction: row-reverse;
+}
+
+.status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0.75;
+  animation: 1500ms slideDown forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: .75;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+    opacity: .75;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
 }

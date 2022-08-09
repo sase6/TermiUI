@@ -5,33 +5,29 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import axios from 'axios';
 
 const ScriptsList = (props) => {
-  const [scripts, setScripts] = useState({brandon: 'sase', brandon1: 'sase', brandon2: 'sase', brandon3: 'sase', brandon4: 'sase', brandon5: 'sase', brandon6: 'sase', });
-  const [displayedScripts, setDisplayedScripts] = useState(scripts);
+  const { data, getData, setStatus } = props;
+  const [displayedScripts, setDisplayedScripts] = useState(data);
   const scriptList = useRef(null);
-
-  const getScrips = () => {
-    // use axios
-    // gte script 
-    // render scripts
-  };
 
   const filterScripts = (e) => {
     let query = e.target.value;
     if (query === '') {
-      setDisplayedScripts(scripts);
+      setDisplayedScripts(data);
       return;
     }
 
-    let result = {...scripts};
+    let result = {...data};
 
-    Object.keys(scripts).forEach((sc) => {
-      if (sc.indexOf(query) === -1) delete result[sc];
+    Object.keys(data).forEach((sc) => {
+      if (sc.toLowerCase().indexOf(query.toLowerCase()) === -1) delete result[sc];
     });
 
     setDisplayedScripts(result);
   };
 
-  if (Object.keys(scripts).length <= 0) {
+  useEffect(() => setDisplayedScripts(props.data), [props.data]);
+
+  if (Object.keys(data).length <= 0) {
     return (
       <div className='scripts-list'>
           <TextField onKeyUp={filterScripts} variant='standard'  label='Search Scripts' size='small' fullWidth />
@@ -44,7 +40,7 @@ const ScriptsList = (props) => {
     <div className="scripts-list" ref={scriptList}>
       <TextField onKeyUp={filterScripts} variant='standard'  label='Search Scripts' size='small' fullWidth />
       <div className="listOfScripts">
-        {Object.keys(displayedScripts).map((script, i) => <Script key={`script-${i}`} scriptText={displayedScripts[script]} scriptName={script}/>)}
+        {Object.keys(displayedScripts).map((script, i) => <Script setStatus={setStatus} getData={getData} key={`script-${i}`} scriptText={displayedScripts[script]} scriptName={script}/>)}
       </div>
     </div>
   );
@@ -52,21 +48,40 @@ const ScriptsList = (props) => {
 
 const Script = (props) => {
 
-  const { scriptName, scriptText } = props;
+  const { scriptName, scriptText, getData, setStatus } = props;
 
   const runScript = () => {
     axios({
       method: 'post',
       url: 'run',
       data: {scriptName}
-    });
+    })
+    .then(() => {
+      setStatus("Ran Script");
+    })
+    .catch(err => setStatus("Failed to Run Script"));
+  };
+
+  const deleteScript = () => {
+    axios({
+      method: 'post',
+      url: '/remove',
+      data: {
+        scriptName: scriptName
+      }
+    })
+    .then(() => {
+      setStatus("Deleted " + scriptName);
+      getData();
+    })
+    .catch(err => setStatus("Failed to Delete"));
   };
 
   return (
     <div className="script-cell">
       <div className="script-top">
         <TextField value={scriptName} disabled size='small' sx={{width: '200px'}}/>
-        <Button variant='outlined' size='small' sx={{height: '40px', color:'indianred', borderColor:'indianred'}}>Delete <ClearIcon sx={{fontSize: '18px', color:'indianred'}}/> </Button>
+        <Button onClick={deleteScript} variant='outlined' size='small' sx={{height: '40px', color:'indianred', borderColor:'indianred'}}>Delete <ClearIcon sx={{fontSize: '18px', color:'indianred'}}/> </Button>
         <Button variant='outlined' size='small' sx={{height: '40px', color:'limegreen', borderColor:'limegreen'}} onClick={runScript}>Run <PlayArrowIcon sx={{fontSize: '18px', color: 'limegreen'}}/> </Button>
       </div>
 

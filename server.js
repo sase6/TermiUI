@@ -66,4 +66,32 @@ app.post('/run', (req, res) => {
   });
 });
 
+app.post('/kill', (req, res) => {
+  exec(`kill -9 $(lsof -t -i:${req.body.port})`);
+  res.end();
+});
+
+app.post('/remove', (req, res) => {
+  const { scriptName/*[bashScript, bashScript]*/ } = req.body;
+  fs.readFile(path.join(__dirname, 'client', 'data.json'), 'utf-8', (err, data) => {
+    if (err) {
+      res.status(500).end(JSON.stringify(err));
+      return;
+    }
+
+    let parsedJson = JSON.parse(data);
+    delete parsedJson[scriptName];
+    let stringifedJson = JSON.stringify(parsedJson);
+    fs.writeFile(path.join(__dirname, 'client', 'data.json'), stringifedJson, (err) => {
+      if (err) {
+        res.status(500).end(JSON.stringify(err));
+        return;
+      } else {
+        
+      }
+      res.end();
+    });
+  });
+});
+
 app.listen(port, () => console.log('Listening on port: ', port));
