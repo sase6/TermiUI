@@ -6,8 +6,8 @@ exec('node server.js', (a,b,c) => console.log({a,b,c}));
 
 const createWindow = () => {
   const win = new BrowserWindow({
-    width: 400,
-    height: 300,
+    width: 450,
+    height: 700,
     autoHideMenuBar: true
   });
 
