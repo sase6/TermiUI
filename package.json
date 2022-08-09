@@ -1,0 +1,23 @@
+{
+  "name": "termiui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "electron-start": "electron .",
+    "server-dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^20.0.1",
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermiUI</title>
+    <link rel="stylesheet" href="/client/style.css">
+</head>
+<body>
+  <main class="app">
+    <div class="current-directory">CURRENT PATH: </div>
+    
+    <section class="add-script">
+      <div class="write-new-script-texts">
+        <input type="text" class="new-script-name-input" value="Script Name" onclick="this.select()">
+        <input type="text" class="new-script-string-input" value="Script" onclick="this.select()">
+      </div>
+      <div class="app-script-button"></div>
+    </section>
+
+    <section class="existing-scripts">
+      <div class="existing-scripts-text">SCRIPTS (click to run)</div>
+      <div class="existing-scripts-list"></div>
+    </section>
+
+    <section class="kill-port">
+      <span class="kill-port-text">KILL PORT: </span>
+      <span class="input-wrapper">
+        <input type="text" class="port-input">
+      </span>
+      <button class="kill-port-btn">KILL</button>
+    </section>
+  </main>
+
+  <script src="/node_modules/axios/dist/axios.min.js"></script>
+  <script type="module" src="/client/index.js"></script>
+</body>
+</html>

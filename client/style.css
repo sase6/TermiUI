@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.app {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  background: rgba(0,0,0,0.85);
+  display: grid;
+  grid-template-rows: 20px 115px 115px 50px;
+  box-sizing: border-box;
+  padding: 5px;
+
+}
+
+input {
+  /* background: rgba(255,255,255,0.225); */
+  background: transparent;
+  border: none;
+  height: 25px;
+  text-align: center;
+  box-sizing: border-box;
+  background: lightslategray;
+}
+
+.port-input {
+  width: 50px;
+}
+
+.add-script {
+  display: grid;
+  grid-template-columns: calc(400px - 130px) 125px;
+  justify-content: space-between;
+}
+
+.write-new-script-texts {
+  display: grid;
+  /* grid-template-rows: 50% 50%; */
+  align-content: space-around;
+}
+
+.existing-scripts-list {
+  height: 115px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2.5px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: scroll;
+  color: white;
+  display: grid;
+  grid-template-columns: max-content max-content max-content max-content;
+  justify-content: space-between;
+}
+.existing-scripts-list::-webkit-scrollbar {
+  display: none;
+}
+
+.existing-scripts-list * {
+  width: 75px;
+  height: 75px;
+  font-size: 1em;
+  box-sizing: border-box;
+  padding: 2.5px;
+  border: 1px solid salmon;
+  border-radius: 2.5px;
+  margin-top: 25px;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.existing-scripts-list *::-webkit-scrollbar {
+  display: none;
+}
+
+.kill-port {
+  position: relative;
+  top: 19px;
+}
