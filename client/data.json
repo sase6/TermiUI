@@ -1,1 +1,1 @@
-{"QrDok":"cd ../QrDok && code .","Open x Run NCEv2":"cd ../nce_v2 && npm run server-dev"}
+{"QrDok":"cd ../QrDok && code .","NCE Development":"cd ../nce_v2 && code . && npm run server-dev"}

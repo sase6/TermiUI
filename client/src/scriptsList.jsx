@@ -59,7 +59,7 @@ const Script = (props) => {
     .then(() => {
       setStatus("Ran Script");
     })
-    .catch(err => setStatus("Failed to Run Script"));
+    .catch(err => setStatus("Failed to Run Script", false));
   };
 
   const deleteScript = () => {

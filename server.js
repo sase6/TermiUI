@@ -61,8 +61,13 @@ app.post('/run', (req, res) => {
     }
     let parsedJson = JSON.parse(data);
     let scriptString = parsedJson[scriptName];
-    exec(scriptString);
-    res.end(__dirname);
+    exec(scriptString, (err, out) => {
+      if (err) {
+        res.status(500).end();
+        return;
+      }
+    });
+    res.end();
   });
 });
 
